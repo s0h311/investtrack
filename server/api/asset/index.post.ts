@@ -10,19 +10,21 @@ export default defineEventHandler(async (event) => {
   if (validateAsset(asset)) {
     const { data, error } = await supabase.from('asset').insert(asset).select()
 
-    console.log('data', data)
-    console.log('error', error)
-
     if (data && data[0]) {
-      return new Response(data[0].id, { status: 201 })
+      setResponseStatus(event, 200)
+      return data[0].id
     }
 
-    return new Response(error!.message, { status: 500 })
+    if (error) {
+      setResponseStatus(event, 500)
+      return error.message
+    }
   }
 
-  return new Response('Bad request', { status: 400 })
+  setResponseStatus(event, 400)
 })
 
 function validateAsset(asset: unknown): asset is AssetInsert {
+  // TODO validate
   return true
 }

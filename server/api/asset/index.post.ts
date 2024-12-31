@@ -1,8 +1,8 @@
 import { serverSupabaseClient } from '#supabase/server'
 import { Database } from '~/server/data/rawTypes'
-import { AssetInsert } from '~/server/data/types'
+import { Asset, AssetInsert } from '~/server/data/types'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<Asset['id'] | Error['message'] | void> => {
   const supabase = await serverSupabaseClient<Database>(event)
 
   const asset = await readBody(event)
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     const { data, error } = await supabase.from('asset').insert(asset).select()
 
     if (data && data[0]) {
-      setResponseStatus(event, 200)
+      setResponseStatus(event, 201)
       return data[0].id
     }
 

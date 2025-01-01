@@ -2,7 +2,12 @@
   <h1>Login page</h1>
 
   <form @submit.prevent="login">
-    <input name="email" placeholder="john@doe.com" type="email" required />
+    <input
+      name="email"
+      placeholder="john@doe.com"
+      type="email"
+      required
+    />
 
     <button type="submit">Login</button>
   </form>

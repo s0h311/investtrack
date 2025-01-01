@@ -1,6 +1,11 @@
 <template>
   <form @submit.prevent="login">
-    <input name="token" placeholder="123456" type="text" required />
+    <input
+      name="token"
+      placeholder="123456"
+      type="text"
+      required
+    />
 
     <button type="submit">Login</button>
   </form>

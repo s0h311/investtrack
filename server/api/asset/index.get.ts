@@ -12,6 +12,5 @@ export default defineEventHandler(async (event): Promise<Asset[] | Error['messag
     return error.message
   }
 
-  setResponseStatus(event, 200)
   return data
 })

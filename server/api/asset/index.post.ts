@@ -8,20 +8,18 @@ export default defineEventHandler(async (event): Promise<Asset['id'] | Error['me
   const asset = await readBody(event)
 
   if (validateAsset(asset)) {
-    const { data, error } = await supabase.from('asset').insert(asset).select()
-
-    if (data && data[0]) {
-      setResponseStatus(event, 201)
-      return data[0].id
-    }
-
-    if (error) {
-      setResponseStatus(event, 500)
-      return error.message
-    }
+    setResponseStatus(event, 400)
   }
 
-  setResponseStatus(event, 400)
+  const { data, error } = await supabase.from('asset').insert(asset).select().single()
+
+  if (error) {
+    setResponseStatus(event, 500)
+    return error.message
+  }
+
+  setResponseStatus(event, 201)
+  return data.id
 })
 
 function validateAsset(asset: unknown): asset is AssetInsert {

@@ -1,8 +1,8 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import { Database } from '~/server/data/rawTypes'
-import { OrderInsert } from '~/server/data/types'
+import { Order, OrderInsert } from '~/server/data/types'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<Order['id'] | Error['message'] | void> => {
   const supabase = await serverSupabaseClient<Database>(event)
   const user = await serverSupabaseUser(event)
 
@@ -24,17 +24,15 @@ export default defineEventHandler(async (event) => {
     user_id: user.id,
   }
 
-  const { data, error } = await supabase.from('order').insert(order).select()
-
-  if (data && data[0]) {
-    setResponseStatus(event, 201)
-    return data[0].id
-  }
+  const { data, error } = await supabase.from('order').insert(order).select().single()
 
   if (error) {
     setResponseStatus(event, 500)
     return error.message
   }
+
+  setResponseStatus(event, 201)
+  return data.id
 })
 
 function validateOrder(rawOrder: unknown): rawOrder is Omit<OrderInsert, 'user_id'> {

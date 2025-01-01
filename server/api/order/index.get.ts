@@ -19,6 +19,5 @@ export default defineEventHandler(async (event): Promise<Order[] | Error['messag
     return error.message
   }
 
-  setResponseStatus(event, 200)
   return data
 })

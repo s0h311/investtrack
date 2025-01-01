@@ -1,6 +1,6 @@
 import { serverSupabaseClient } from '#supabase/server'
-import { Database } from '~/server/data/rawTypes'
-import { Asset } from '~/server/data/types'
+import type { Database } from '~~/server/data/rawTypes'
+import type { Asset } from '~~/server/data/types'
 
 export default defineEventHandler(async (event): Promise<Asset[] | Error['message']> => {
   const supabase = await serverSupabaseClient<Database>(event)

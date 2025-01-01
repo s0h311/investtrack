@@ -1,6 +1,6 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
-import { Database } from '~/server/data/rawTypes'
-import { Order, OrderInsert } from '~/server/data/types'
+import type { Database } from '~~/server/data/rawTypes'
+import type { Order, OrderInsert } from '~~/server/data/types'
 
 export default defineEventHandler(async (event): Promise<Order['id'] | Error['message'] | void> => {
   const supabase = await serverSupabaseClient<Database>(event)

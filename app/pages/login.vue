@@ -1,7 +1,7 @@
 <template>
   <h1>Login page</h1>
 
-  <form @submit.prevent="login">
+  <Form @form-submit="login">
     <input
       name="email"
       placeholder="john@doe.com"
@@ -10,19 +10,13 @@
     />
 
     <button type="submit">Login</button>
-  </form>
+  </Form>
 </template>
 
 <script setup lang="ts">
   const supabase = useSupabaseClient()
 
-  async function login(event: Event): Promise<void> {
-    const inputElement = event.target as HTMLFormElement
-
-    const formData = new FormData(inputElement)
-
-    const email = formData.get('email') as string
-
+  async function login({ email }: { email: string }): Promise<void> {
     await supabase.auth.signInWithOtp({
       email,
     })

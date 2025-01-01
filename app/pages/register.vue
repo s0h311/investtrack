@@ -1,7 +1,7 @@
 <template>
   <h1>Register page</h1>
 
-  <form @submit.prevent="register">
+  <Form @form-submit="register">
     <input
       name="name"
       placeholder="John Doe"
@@ -17,20 +17,13 @@
     />
 
     <button type="submit">Register</button>
-  </form>
+  </Form>
 </template>
 
 <script setup lang="ts">
   const supabase = useSupabaseClient()
 
-  async function register(event: Event): Promise<void> {
-    const inputElement = event.target as HTMLFormElement
-
-    const formData = new FormData(inputElement)
-
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-
+  async function register({ name, email }: { name: string; email: string }): Promise<void> {
     await supabase.auth.signInWithOtp({
       email,
       options: {

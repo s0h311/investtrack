@@ -45,6 +45,10 @@
   import OrderForm from '~/pages/dashboard/components/OrderForm.vue'
   import type { Asset } from '~~/server/data/types'
 
+  useHead({
+    title: 'Dashboard',
+  })
+
   const { data: assets, error: assetsFetchError } = useAssets()
   const { data: orders, error: ordersFetchError } = useOrders()
 

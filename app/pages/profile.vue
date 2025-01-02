@@ -24,6 +24,10 @@
 </template>
 
 <script setup lang="ts">
+  useHead({
+    title: 'Profile',
+  })
+
   const user = useSupabaseUser()
   const supabase = useSupabaseClient()
 

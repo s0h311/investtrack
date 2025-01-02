@@ -20,6 +20,10 @@
 </template>
 
 <script setup lang="ts">
+  useHead({
+    title: 'Login',
+  })
+
   const supabase = useSupabaseClient()
 
   const isLoading = ref<boolean>(false)

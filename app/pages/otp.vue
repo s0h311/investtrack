@@ -20,6 +20,10 @@
 </template>
 
 <script setup lang="ts">
+  useHead({
+    title: 'OTP',
+  })
+
   const supabase = useSupabaseClient()
   const route = useRoute()
 

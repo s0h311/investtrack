@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-input, select, button {
-    @apply border rounded-md px-2 py-1
+input {
+    @apply input input-bordered;
+}
+
+select {
+    @apply select select-bordered;
+}
+
+button {
+    @apply btn;
 }
 
 thead tr,

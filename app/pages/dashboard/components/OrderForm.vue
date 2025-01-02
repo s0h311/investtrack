@@ -38,7 +38,13 @@
       <option value="sell">Sell</option>
     </select>
 
-    <button type="submit">Add</button>
+    <Cta
+      is-primary
+      :isLoading
+      type="submit"
+    >
+      Add
+    </Cta>
   </Form>
 </template>
 
@@ -53,6 +59,8 @@
     orderAdd: [void]
   }>()
 
+  const isLoading = ref<boolean>(false)
+
   const { refresh } = await useOrders()
 
   type OrderAdd = Omit<OrderInsert, 'asset_id' | 'user_id'> & { asset: string; type: 'buy' | 'sell' }
@@ -62,6 +70,8 @@
       // TODO display error
       return
     }
+
+    isLoading.value = true
 
     // TODO handle error case here
     await $fetch('/api/order', {
@@ -74,6 +84,7 @@
       },
     })
 
+    isLoading.value = false
     await refresh()
     emit('orderAdd')
   }

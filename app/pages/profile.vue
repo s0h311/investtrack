@@ -11,23 +11,29 @@
       {{ formatDateFromString(user.created_at) }}</span
     >. If you want to logout
 
-    <button
-      class="text-green-700 font-semibold"
+    <Cta
+      is-primary
+      :isLoading
+      type="submit"
       @click="logout"
     >
       click here.
-    </button>
+    </Cta>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { formatDateFromString } from '~/utils/date'
-
   const user = useSupabaseUser()
   const supabase = useSupabaseClient()
 
+  const isLoading = ref<boolean>(false)
+
   async function logout(): Promise<void> {
+    isLoading.value = true
+
     await supabase.auth.signOut()
+
+    isLoading.value = false
     await navigateTo('/')
   }
 </script>

@@ -16,14 +16,24 @@
       required
     />
 
-    <button type="submit">Register</button>
+    <Cta
+      is-primary
+      :isLoading
+      type="submit"
+    >
+      Register
+    </Cta>
   </Form>
 </template>
 
 <script setup lang="ts">
   const supabase = useSupabaseClient()
 
+  const isLoading = ref<boolean>(false)
+
   async function register({ name, email }: { name: string; email: string }): Promise<void> {
+    isLoading.value = true
+
     await supabase.auth.signInWithOtp({
       email,
       options: {
@@ -34,6 +44,7 @@
       },
     })
 
+    isLoading.value = false
     await navigateTo(`/otp?email=${email}`)
   }
 </script>

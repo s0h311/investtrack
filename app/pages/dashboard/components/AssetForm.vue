@@ -23,7 +23,13 @@
       <option value="share">Share</option>
     </select>
 
-    <button type="submit">Add</button>
+    <Cta
+      is-primary
+      :isLoading
+      type="submit"
+    >
+      Add
+    </Cta>
   </Form>
 </template>
 
@@ -32,13 +38,18 @@
 
   const { refresh } = await useAssets()
 
+  const isLoading = ref<boolean>(false)
+
   async function addAsset(asset: AssetInsert): Promise<void> {
+    isLoading.value = true
+
     // TODO handle error case here
     await $fetch('/api/asset', {
       method: 'POST',
       body: asset,
     })
 
+    isLoading.value = false
     await refresh()
   }
 </script>

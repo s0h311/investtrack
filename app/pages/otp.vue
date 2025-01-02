@@ -7,7 +7,13 @@
       required
     />
 
-    <button type="submit">Login</button>
+    <Cta
+      is-primary
+      :isLoading
+      type="submit"
+    >
+      Login
+    </Cta>
   </Form>
 </template>
 
@@ -15,7 +21,11 @@
   const supabase = useSupabaseClient()
   const route = useRoute()
 
+  const isLoading = ref<boolean>(false)
+
   async function login({ token }: { token: string }): Promise<void> {
+    isLoading.value = true
+
     const email = route.query.email as string
 
     const { error } = await supabase.auth.verifyOtp({
@@ -29,6 +39,7 @@
       console.error(error)
     }
 
+    isLoading.value = false
     await navigateTo('/')
   }
 </script>

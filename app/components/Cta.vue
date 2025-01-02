@@ -6,6 +6,8 @@
       'btn-secondary': isSecondary,
       'btn-neutral': isNeutral,
       'btn-accent': isAccent,
+      'btn-outline': isOutline,
+      'btn-link': isLink,
     }"
     :type="type ?? 'button'"
     @click="$emit('click')"
@@ -27,6 +29,8 @@
     isSecondary?: boolean
     isNeutral?: boolean
     isAccent?: boolean
+    isOutline?: boolean
+    isLink?: boolean
     type?: ButtonHTMLAttributes['type']
   }>()
 

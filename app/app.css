@@ -18,3 +18,7 @@ thead tr,
 tbody tr {
     @apply *:p-3 *:text-start *:align-text-top;
 }
+
+.btn-link {
+    @apply px-0;
+}

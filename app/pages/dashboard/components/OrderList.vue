@@ -17,7 +17,7 @@
         :class="order.type === 'SELL' ? 'bg-red-50' : 'bg-emerald-50'"
         :key="order.id"
       >
-        <td>{{ order.asset.name }}</td>
+        <td class="max-w-[50ch] line-clamp-1">{{ order.asset.name }}</td>
         <td>{{ order.quantity }}</td>
         <td>{{ order.price }}</td>
         <td>{{ order.total }}</td>
@@ -39,17 +39,19 @@
   }>()
 
   const formattedAssets = computed(() => {
-    return props.orders.map((order) => {
-      return {
-        id: order.id,
-        asset: findAssetById(order.asset_id),
-        quantity: Math.abs(order.quantity),
-        price: formatCurrency(order.price),
-        total: formatCurrency(Math.abs(order.quantity) * order.price),
-        orderDate: formatDateFromString(order.order_date),
-        type: order.quantity < 0 ? 'SELL' : 'BUY',
-      }
-    })
+    return props.orders
+      .toSorted((a, b) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime())
+      .map((order) => {
+        return {
+          id: order.id,
+          asset: findAssetById(order.asset_id),
+          quantity: Math.abs(order.quantity),
+          price: formatCurrency(order.price),
+          total: formatCurrency(Math.abs(order.quantity) * order.price),
+          orderDate: formatDateFromString(order.order_date),
+          type: order.quantity < 0 ? 'SELL' : 'BUY',
+        }
+      })
   })
 
   function findAssetById(assetId: string): Asset {

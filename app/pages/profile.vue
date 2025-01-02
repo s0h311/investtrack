@@ -13,6 +13,7 @@
 
     <Cta
       is-primary
+      is-link
       :isLoading
       type="submit"
       @click="logout"

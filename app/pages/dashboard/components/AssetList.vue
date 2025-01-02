@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div>{{ asset.name }}</div>
+      <div class="max-w-[30ch] line-clamp-2">{{ asset.name }}</div>
     </li>
   </ul>
 </template>

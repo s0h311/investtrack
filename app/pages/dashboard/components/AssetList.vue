@@ -2,7 +2,8 @@
   <ul class="flex flex-wrap gap-5">
     <li
       v-for="asset in assets"
-      class="shadow w-fit p-3 rounded-md max-w-72 text-sm"
+      class="shadow w-fit p-3 rounded-md max-w-72 text-sm cursor-pointer"
+      :class="selectedAsset?.id === asset.id ? 'bg-emerald-50' : ''"
       :key="asset.id"
       @click="$emit('assetClick', asset)"
     >
@@ -27,6 +28,7 @@
 
   defineProps<{
     assets: Asset[]
+    selectedAsset: Asset | null
   }>()
 
   defineEmits<{

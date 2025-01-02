@@ -6,7 +6,8 @@
       <AssetList
         v-if="!assetsFetchError"
         :assets="assets ?? []"
-        @asset-click="(asset) => (selectedAsset = asset)"
+        @asset-click="toggleSelectedAsset"
+        :selected-asset="selectedAsset"
       />
     </section>
 
@@ -31,7 +32,7 @@
 
       <OrderForm
         :selectedAsset
-        @order-add="selectedAsset = null"
+        @order-add="toggleSelectedAsset(null)"
       />
     </section>
   </div>
@@ -48,4 +49,13 @@
   const { data: orders, error: ordersFetchError } = useOrders()
 
   const selectedAsset = ref<Asset | null>(null)
+
+  function toggleSelectedAsset(asset: Asset | null): void {
+    if (!asset || selectedAsset.value?.id === asset.id) {
+      selectedAsset.value = null
+      return
+    }
+
+    selectedAsset.value = asset
+  }
 </script>

@@ -5,3 +5,8 @@
 input, select, button {
     @apply border rounded-md px-2 py-1
 }
+
+thead tr,
+tbody tr {
+    @apply *:p-3 *:text-start *:align-text-top;
+}

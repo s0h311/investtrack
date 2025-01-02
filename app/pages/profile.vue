@@ -8,7 +8,7 @@
       v-if="user?.created_at"
       class="text-sky-700 font-semibold"
     >
-      {{ new Date(user.created_at).toDateString() }}</span
+      {{ formatDateFromString(user.created_at) }}</span
     >. If you want to logout
 
     <button
@@ -21,6 +21,8 @@
 </template>
 
 <script setup lang="ts">
+  import { formatDateFromString } from '~/utils/date'
+
   const user = useSupabaseUser()
   const supabase = useSupabaseClient()
 

@@ -11,14 +11,14 @@
     <input
       name="quantity"
       type="number"
-      placeholder="10"
+      placeholder="Quantity"
       required
     />
 
     <input
       name="price"
       type="number"
-      placeholder="130"
+      placeholder="Price"
       required
     />
 

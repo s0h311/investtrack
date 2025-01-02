@@ -10,7 +10,7 @@
     <input
       name="isin"
       type="text"
-      placeholder="IE000Y77LGG9"
+      placeholder="ISIN"
       required
     />
 

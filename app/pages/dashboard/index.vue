@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap gap-10">
-    <section>
+    <section class="w-2/3">
       <h2 class="mb-2">Assets</h2>
 
       <AssetList
@@ -17,7 +17,7 @@
       <AssetForm />
     </section>
 
-    <section>
+    <section class="w-2/3">
       <h2 class="mb-2">Orders</h2>
 
       <OrderList

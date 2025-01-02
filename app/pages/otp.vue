@@ -4,6 +4,8 @@
       name="token"
       placeholder="123456"
       type="text"
+      maxlength="6"
+      minlength="6"
       required
     />
 

@@ -1,4 +1,10 @@
 <template>
+  <KeyFiguresRow
+    v-if="!ordersFetchError"
+    class="mb-10"
+    :orders="orders ?? []"
+  />
+
   <div class="flex flex-wrap gap-10">
     <section class="w-2/3">
       <h2 class="mb-2">Assets</h2>
@@ -45,6 +51,7 @@
   import OrderForm from '~/pages/dashboard/components/OrderForm.vue'
   import type { Asset } from '~~/server/data/types'
   import { definePageMeta } from '#imports'
+  import KeyFiguresRow from '~/pages/dashboard/components/KeyFiguresRow.vue'
 
   useHead({
     title: 'Dashboard',

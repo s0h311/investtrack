@@ -26,5 +26,7 @@
     }
 
     emit('formSubmit', data as T)
+
+    form.reset()
   }
 </script>

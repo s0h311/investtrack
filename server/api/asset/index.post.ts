@@ -11,7 +11,14 @@ export default defineEventHandler(async (event): Promise<Asset['id'] | Error['me
     setResponseStatus(event, 400)
   }
 
-  const { data, error } = await supabase.from('asset').insert(asset).select().single()
+  const { data, error } = await supabase
+    .from('asset')
+    .insert({
+      ...asset,
+      isin: asset.isin.toLowerCase(),
+    })
+    .select()
+    .single()
 
   if (error) {
     setResponseStatus(event, 500)

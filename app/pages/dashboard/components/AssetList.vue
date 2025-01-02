@@ -2,14 +2,14 @@
   <ul class="flex flex-wrap gap-5">
     <li
       v-for="asset in assets"
-      class="shadow w-fit p-3 rounded-md"
+      class="shadow w-fit p-3 rounded-md max-w-72 text-sm"
       :key="asset.id"
     >
-      <div class="flex items-center gap-5">
-        <div class="text-sky-900 text-sm">{{ asset.isin }}</div>
+      <div class="flex items-center justify-between gap-5">
+        <div class="text-sky-900">{{ asset.isin.toUpperCase() }}</div>
 
         <div
-          class="text-sm px-1 rounded"
+          class="px-1 rounded"
           :class="asset.type === 'share' ? 'bg-sky-900 text-sky-200' : 'bg-emerald-900 text-emerald-200'"
         >
           {{ asset.type.substring(0, 1).toUpperCase() }}

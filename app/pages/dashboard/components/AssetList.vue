@@ -4,6 +4,7 @@
       v-for="asset in assets"
       class="shadow w-fit p-3 rounded-md max-w-72 text-sm"
       :key="asset.id"
+      @click="$emit('assetClick', asset)"
     >
       <div class="flex items-center justify-between gap-5">
         <div class="text-sky-900">{{ asset.isin.toUpperCase() }}</div>
@@ -26,5 +27,9 @@
 
   defineProps<{
     assets: Asset[]
+  }>()
+
+  defineEmits<{
+    assetClick: [asset: Asset]
   }>()
 </script>

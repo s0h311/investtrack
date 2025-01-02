@@ -1,4 +1,4 @@
-import { Database } from '~/server/data/rawTypes'
+import type { Database } from '~~/server/data/rawTypes'
 
 type PublicSchema = Database['public']['Tables']
 

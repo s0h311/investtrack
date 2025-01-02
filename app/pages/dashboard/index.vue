@@ -44,9 +44,14 @@
   import OrderList from '~/pages/dashboard/components/OrderList.vue'
   import OrderForm from '~/pages/dashboard/components/OrderForm.vue'
   import type { Asset } from '~~/server/data/types'
+  import { definePageMeta } from '#imports'
 
   useHead({
     title: 'Dashboard',
+  })
+
+  definePageMeta({
+    middleware: ['auth'],
   })
 
   const { data: assets, error: assetsFetchError } = useAssets()

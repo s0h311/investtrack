@@ -24,8 +24,14 @@
 </template>
 
 <script setup lang="ts">
+  import { definePageMeta } from '#imports'
+
   useHead({
     title: 'Profile',
+  })
+
+  definePageMeta({
+    middleware: ['auth'],
   })
 
   const user = useSupabaseUser()

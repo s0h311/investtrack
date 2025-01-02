@@ -1,6 +1,4 @@
 <template>
-  <h1>Login page</h1>
-
   <Form @form-submit="login">
     <input
       name="email"
@@ -20,8 +18,14 @@
 </template>
 
 <script setup lang="ts">
+  import { definePageMeta } from '#imports'
+
   useHead({
     title: 'Login',
+  })
+
+  definePageMeta({
+    middleware: ['not-auth'],
   })
 
   const supabase = useSupabaseClient()

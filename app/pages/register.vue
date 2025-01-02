@@ -1,6 +1,4 @@
 <template>
-  <h1>Register page</h1>
-
   <Form @form-submit="register">
     <input
       name="name"
@@ -27,8 +25,14 @@
 </template>
 
 <script setup lang="ts">
+  import { definePageMeta } from '#imports'
+
   useHead({
     title: 'Register',
+  })
+
+  definePageMeta({
+    middleware: ['not-auth'],
   })
 
   const supabase = useSupabaseClient()

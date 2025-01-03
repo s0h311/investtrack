@@ -1,5 +1,5 @@
 <template>
-  <search class="flex items-center gap-0.5 mb-5">
+  <form class="flex items-center gap-0.5 mb-5">
     <input
       v-model="searchQuery"
       placeholder="Search"
@@ -11,34 +11,22 @@
     >
       <IconX />
     </button>
-  </search>
+  </form>
 
   <ul class="grid grid-cols-2 grid-rows-2 gap-5 w-fit">
-    <li
+    <AssetCard
       v-for="asset in displayedAssets"
-      class="shadow p-3 rounded-md max-w-72 text-sm cursor-pointer"
-      :class="selectedAsset?.id === asset.id ? 'bg-emerald-50' : ''"
       :key="asset.id"
+      :asset
+      :selectedAsset
       @click="$emit('assetClick', asset)"
-    >
-      <div class="flex items-center justify-between gap-5">
-        <div class="text-sky-900">{{ asset.isin.toUpperCase() }}</div>
-
-        <div
-          class="px-1 rounded"
-          :class="asset.type === 'share' ? 'bg-sky-900 text-sky-200' : 'bg-emerald-900 text-emerald-200'"
-        >
-          {{ asset.type.substring(0, 1).toUpperCase() }}
-        </div>
-      </div>
-
-      <div class="max-w-[30ch] line-clamp-2">{{ asset.name }}</div>
-    </li>
+    />
   </ul>
 </template>
 
 <script setup lang="ts">
   import type { Asset } from '~~/server/data/types'
+  import AssetCard from '~/pages/dashboard/components/AssetCard.vue'
 
   const props = defineProps<{
     assets: Asset[]

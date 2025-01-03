@@ -7,8 +7,9 @@ export default defineEventHandler(async (event): Promise<Asset['id'] | Error['me
 
   const asset = await readBody(event)
 
-  if (validateAsset(asset)) {
+  if (!validateAsset(asset)) {
     setResponseStatus(event, 400)
+    return
   }
 
   const { data, error } = await supabase

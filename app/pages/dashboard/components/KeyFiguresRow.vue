@@ -27,6 +27,10 @@
   const todaysDate = new Date()
 
   const currentMonthsTotalInvestment = computed(() => {
+    if (props.orders.length === 0) {
+      return 0
+    }
+
     return props.orders
       .filter(({ order_date }) => {
         const orderDate = new Date(order_date)

@@ -7,13 +7,13 @@
 
   <div class="flex flex-wrap gap-10">
     <section class="w-2/3">
-      <h2 class="mb-2">Assets</h2>
+      <h2 class="mb-2">Favorite Assets</h2>
 
-      <AssetList
-        v-if="!assetsFetchError"
-        :assets="assets ?? []"
-        @asset-click="toggleSelectedAsset"
+      <FavoriteAssetList
+        v-if="!favoriteAssetsFetchError"
+        :assets="favoriteAssets ?? []"
         :selected-asset="selectedAsset"
+        @asset-click="toggleSelectedAsset"
       />
     </section>
 
@@ -45,13 +45,14 @@
 </template>
 
 <script setup lang="ts">
-  import AssetList from '~/pages/dashboard/components/AssetList.vue'
   import AssetForm from '~/pages/dashboard/components/AssetForm.vue'
   import OrderList from '~/pages/dashboard/components/OrderList.vue'
   import OrderForm from '~/pages/dashboard/components/OrderForm.vue'
   import type { Asset } from '~~/server/data/types'
   import { definePageMeta } from '#imports'
   import KeyFiguresRow from '~/pages/dashboard/components/KeyFiguresRow.vue'
+  import FavoriteAssetList from '~/pages/dashboard/components/FavoriteAssetList.vue'
+  import userFavoriteAssets from '~/composables/userFavoriteAssets'
 
   useHead({
     title: 'Dashboard',
@@ -63,6 +64,7 @@
 
   const { data: assets, error: assetsFetchError } = useAssets()
   const { data: orders, error: ordersFetchError } = useOrders()
+  const { data: favoriteAssets, error: favoriteAssetsFetchError } = userFavoriteAssets()
 
   const selectedAsset = ref<Asset | null>(null)
 

@@ -1,5 +1,5 @@
 import type { Asset } from '~~/server/data/types'
 
-export default function userFavoriteAssets() {
+export default function useFavoriteAssets() {
   return useFetch<Asset[]>('/api/favoriteAsset')
 }

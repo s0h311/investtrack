@@ -10,10 +10,6 @@ select {
     @apply select select-bordered;
 }
 
-button {
-    @apply btn;
-}
-
 thead tr,
 tbody tr {
     @apply *:p-3 *:text-start *:align-text-top;

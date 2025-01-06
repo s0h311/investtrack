@@ -6,8 +6,9 @@
     />
 
     <button
-      class="btn-ghost"
+      class="btn btn-ghost"
       @click="searchQuery = null"
+      type="button"
     >
       <IconX />
     </button>
@@ -18,8 +19,11 @@
       v-for="asset in displayedAssets"
       :key="asset.id"
       :asset
-      :selectedAsset
+      :selectedAsset="selectedAsset ?? null"
+      :is-favorite="isFavoriteAsset(asset.id)"
       @click="$emit('assetClick', asset)"
+      @click-unfavorite="$emit('assetUnfavorite', asset.id)"
+      @click-favorite="$emit('assetFavorite', asset.id)"
     />
   </ul>
 </template>
@@ -30,12 +34,16 @@
 
   const props = defineProps<{
     assets: Asset[]
-    selectedAsset: Asset | null
+    selectedAsset?: Asset | null
   }>()
 
   defineEmits<{
     assetClick: [asset: Asset]
+    assetUnfavorite: [assetId: string]
+    assetFavorite: [assetId: string]
   }>()
+
+  const { data: favoriteAssets } = useFavoriteAssets()
 
   const searchQuery = ref<string | null>(null)
 
@@ -46,6 +54,10 @@
       return props.assets.filter(({ name }) => name.toLowerCase().includes(query.toLowerCase()))
     }
 
-    return props.assets.slice(0, 4)
+    return props.assets
   })
+
+  function isFavoriteAsset(assetId: string): boolean {
+    return favoriteAssets.value?.some(({ id }) => id === assetId) ?? false
+  }
 </script>

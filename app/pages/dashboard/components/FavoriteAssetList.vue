@@ -5,7 +5,10 @@
       :key="asset.id"
       :asset
       :selectedAsset
+      :is-favorite="isFavoriteAsset(asset.id)"
       @click="$emit('assetClick', asset)"
+      @click-unfavorite="$emit('assetUnfavorite', asset.id)"
+      @click-favorite="$emit('assetFavorite', asset.id)"
     />
   </ul>
 </template>
@@ -21,5 +24,11 @@
 
   defineEmits<{
     assetClick: [asset: Asset]
+    assetUnfavorite: [assetId: string]
+    assetFavorite: [assetId: string]
   }>()
+
+  function isFavoriteAsset(assetId: string): boolean {
+    return props.assets.some(({ id }) => id === assetId) ?? false
+  }
 </script>

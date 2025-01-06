@@ -19,7 +19,7 @@
   }>()
 
   const balance = computed(() => {
-    const total = props.orders.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b)
+    const total = props.orders.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0)
 
     return formatCurrency(total)
   })
@@ -27,10 +27,6 @@
   const todaysDate = new Date()
 
   const currentMonthsTotalInvestment = computed(() => {
-    if (props.orders.length === 0) {
-      return 0
-    }
-
     return props.orders
       .filter(({ order_date }) => {
         const orderDate = new Date(order_date)
@@ -38,7 +34,7 @@
         return orderDate.getMonth() === todaysDate.getMonth() && orderDate.getFullYear() === todaysDate.getFullYear()
       })
       .map(({ price, quantity }) => price * quantity)
-      .reduce((a, b) => a + b)
+      .reduce((a, b) => a + b, 0)
   })
 
   const currentMonthsTotalInvestmentText = computed(() => formatCurrency(currentMonthsTotalInvestment.value))

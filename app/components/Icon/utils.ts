@@ -1,6 +1,8 @@
 type IconSize = {
+  xs?: boolean
   md?: boolean
   lg?: boolean
+  size?: number
 }
 
 export type FillIconProps = IconSize & {
@@ -12,6 +14,7 @@ export type StrokeIconProps = IconSize & {
 }
 
 const iconSizes = {
+  xs: '16',
   sm: '24',
   md: '30',
   lg: '40',

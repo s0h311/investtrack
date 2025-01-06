@@ -8,6 +8,7 @@
         <td>Total</td>
         <td>Date</td>
         <td>Type</td>
+        <td>Actions</td>
       </tr>
     </thead>
 
@@ -23,6 +24,11 @@
         <td>{{ order.total }}</td>
         <td>{{ order.orderDate }}</td>
         <td>{{ order.type }}</td>
+        <td>
+          <button @click="$emit('orderDelete', order.id)">
+            <IconTrash xs />
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -36,6 +42,10 @@
   const props = defineProps<{
     orders: Order[]
     assets: Asset[]
+  }>()
+
+  defineEmits<{
+    orderDelete: [orderId: string]
   }>()
 
   const formattedAssets = computed(() => {
@@ -55,6 +65,13 @@
   })
 
   function findAssetById(assetId: string): Asset {
-    return props.assets.find(({ id }) => id === assetId)
+    const asset = props.assets.find(({ id }) => id === assetId)
+
+    if (!asset) {
+      // TODO handle error
+      throw new Error()
+    }
+
+    return asset
   }
 </script>

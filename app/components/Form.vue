@@ -1,6 +1,6 @@
 <template>
   <form
-    class="grid gap-5 w-fit"
+    class="grid gap-3 max-w-sm *:max-w-sm"
     @submit.prevent="handleSubmit"
   >
     <slot />

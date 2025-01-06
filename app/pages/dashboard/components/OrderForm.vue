@@ -1,6 +1,7 @@
 <template>
   <Form @form-submit="addOrder">
     <input
+      class="col-span-2"
       name="asset"
       type="text"
       placeholder="Amundi MSCI World SRI Climate Net Zero Ambition PAB (Acc)"
@@ -9,6 +10,7 @@
     />
 
     <input
+      class="w-full"
       name="quantity"
       type="number"
       placeholder="Quantity"
@@ -16,6 +18,7 @@
     />
 
     <input
+      class="w-full"
       name="price"
       type="number"
       placeholder="Price"
@@ -23,6 +26,7 @@
     />
 
     <input
+      class="col-span-2"
       name="order_date"
       type="date"
       placeholder="10.02.2025"
@@ -30,6 +34,7 @@
     />
 
     <select
+      class="col-span-2"
       name="type"
       required
     >
@@ -39,6 +44,7 @@
     </select>
 
     <Cta
+      class="col-span-2"
       is-primary
       :isLoading
       type="submit"

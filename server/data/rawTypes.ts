@@ -33,6 +33,35 @@ export type Database = {
         }
         Relationships: []
       }
+      asset_price: {
+        Row: {
+          asset_id: string
+          created_at: string
+          id: string
+          price: number
+        }
+        Insert: {
+          asset_id: string
+          created_at?: string
+          id?: string
+          price: number
+        }
+        Update: {
+          asset_id?: string
+          created_at?: string
+          id?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "asset_price_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "asset"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       favorite_asset: {
         Row: {
           asset_id: string

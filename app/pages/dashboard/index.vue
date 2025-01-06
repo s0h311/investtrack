@@ -5,6 +5,11 @@
     :orders="orders ?? []"
   />
 
+  <PriceDevelopmentChart
+    v-if="!priceDevelopmentByAssetIdError && selectedAsset"
+    :price-development-data="displayedPriceDevelopmentData"
+  />
+
   <div class="flex flex-wrap gap-10">
     <section class="w-2/3">
       <div class="flex items-center gap-5 mb-2">
@@ -79,6 +84,8 @@
   import KeyFiguresRow from '~/pages/dashboard/components/KeyFiguresRow.vue'
   import FavoriteAssetList from '~/pages/dashboard/components/FavoriteAssetList.vue'
   import useFavoriteAssets from '~/composables/useFavoriteAssets'
+  import PriceDevelopmentChart from '~/pages/dashboard/components/PriceDevelopmentChart.vue'
+  import usePriceDevelopment from '~/composables/usePriceDevelopment'
 
   useHead({
     title: 'Dashboard',
@@ -94,6 +101,17 @@
   const { data: assets, refresh: refreshAssets } = useAssets()
   const { data: orders, error: ordersFetchError, refresh: refreshOrders } = useOrders()
   const { data: favoriteAssets, error: favoriteAssetsFetchError, refresh: refreshFavoriteAssets } = useFavoriteAssets()
+  const { data: priceDevelopmentByAssetId, error: priceDevelopmentByAssetIdError } = usePriceDevelopment()
+
+  const displayedPriceDevelopmentData = computed(() => {
+    const selectedAssetId = selectedAsset.value?.id
+
+    if (selectedAssetId === undefined) {
+      return []
+    }
+
+    return priceDevelopmentByAssetId.value?.[selectedAssetId] ?? []
+  })
 
   function toggleSelectedAsset(asset: Asset | null): void {
     if (!asset || selectedAsset.value?.id === asset.id) {

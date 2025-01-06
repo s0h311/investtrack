@@ -33,35 +33,6 @@ export type Database = {
         }
         Relationships: []
       }
-      asset_price: {
-        Row: {
-          asset_id: string
-          created_at: string
-          id: string
-          price: number
-        }
-        Insert: {
-          asset_id: string
-          created_at?: string
-          id?: string
-          price: number
-        }
-        Update: {
-          asset_id?: string
-          created_at?: string
-          id?: string
-          price?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "asset_price_asset_id_fkey"
-            columns: ["asset_id"]
-            isOneToOne: false
-            referencedRelation: "asset"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       favorite_asset: {
         Row: {
           asset_id: string
@@ -136,6 +107,38 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      price_development: {
+        Row: {
+          asset_id: string
+          created_at: string
+          date: string
+          id: string
+          price: number
+        }
+        Insert: {
+          asset_id: string
+          created_at?: string
+          date: string
+          id?: string
+          price: number
+        }
+        Update: {
+          asset_id?: string
+          created_at?: string
+          date?: string
+          id?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "asset_price_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "asset"
             referencedColumns: ["id"]
           },
         ]

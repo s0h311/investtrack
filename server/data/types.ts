@@ -11,5 +11,5 @@ export type OrderInsert = PublicSchema['order']['Insert']
 export type FavoriteAsset = PublicSchema['favorite_asset']['Row']
 export type FavoriteAssetInsert = PublicSchema['favorite_asset']['Insert']
 
-export type AssetPrice = PublicSchema['asset_price']['Row']
-export type AssetPriceInsert = PublicSchema['asset_price']['Insert']
+export type PriceDevelopment = PublicSchema['price_development']['Row']
+export type PriceDevelopmentInsert = PublicSchema['price_development']['Insert']

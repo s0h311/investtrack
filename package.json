@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/supabase": "1.4.5",
+    "chart.js": "^4.4.7",
     "nuxt": "npm:nuxt-nightly@latest",
     "vue": "latest",
     "vue-router": "latest"

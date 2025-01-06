@@ -11,6 +11,9 @@ importers:
       '@nuxtjs/supabase':
         specifier: 1.4.5
         version: 1.4.5
+      chart.js:
+        specifier: ^4.4.7
+        version: 4.4.7
       nuxt:
         specifier: npm:nuxt-nightly@latest
         version: nuxt-nightly@4.0.0-28926533.c1b8b921(@parcel/watcher@2.5.0)(@types/node@22.10.3)(db0@0.1.4)(ioredis@5.4.2)(magicast@0.3.5)(rollup@4.29.1)(terser@5.37.0)(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.3)(jiti@2.4.2)(terser@5.37.0)(yaml@2.7.0))(yaml@2.7.0)
@@ -660,6 +663,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@kurkle/color@0.3.4':
+    resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
@@ -1367,6 +1373,10 @@ packages:
   change-case@5.4.4:
     resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
 
+  chart.js@4.4.7:
+    resolution: {integrity: sha512-pwkcKfdzTMAU/+jNosKhNL2bHtJc/sSmYgVbuGTEDhzkrhmyihmP7vUc/5ZK9WopidMDHNe3Wm7jOd/WhuHWuw==}
+    engines: {pnpm: '>=8'}
+
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
@@ -1918,8 +1928,8 @@ packages:
     resolution: {integrity: sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  h3-nightly@1.13.1-20250102-141031-adddaab:
-    resolution: {integrity: sha512-OYb72rDu4/6OcjJCVdbEn8Ke027G2o4pV0Rfpl/Bs2hH8KPvgRy7lpeWIiA0ICxaR8hFad+K50WHOBnBhcgdtw==}
+  h3-nightly@1.13.1-20250105-014434-adddaab:
+    resolution: {integrity: sha512-3FoBq3xTVdsFSysEMWRshICQEMxt2TsuEncBKLVl1/UGrUuCJzB0gE6SBa+pbGtRTsFoxffbBkm+Vj3Ud6CQCA==}
 
   h3-nightly@2.0.0-1718872656.6765a6e:
     resolution: {integrity: sha512-LQ8hHOIzk+agD1p0K7UosByKuzDAKGLTnYsP0syV/XMr9E7pWmoaDSWkGdWjtLR9O3hinNqrXU1NW0kTmhiSag==}
@@ -2390,8 +2400,8 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuxi-nightly@3.17.3-20250101-223401-0b61a72:
-    resolution: {integrity: sha512-REzk0UphqnEwQJzuSJiQ+58UJ8oT/cF78FZvut29CFgn1mNaPnp8l+DjHGxvU7LYPmjqhwmnkORMBiiFU1bizA==}
+  nuxi-nightly@3.19.0-20250106-171823-dacb6c0:
+    resolution: {integrity: sha512-zrNh/jR8E2km32wtAQr1Ii1ny/P+Fv4yen62W7DMvIxSG9Dwu/lSMgSUtMwQQUskBW8PspX44CFWr0+5UPs8Zg==}
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
@@ -2850,6 +2860,7 @@ packages:
   rollup-plugin-visualizer@5.13.1:
     resolution: {integrity: sha512-vMg8i6BprL8aFm9DKvL2c8AwS8324EgymYQo9o6E26wgVvwMhsJxS37aNL6ZsU7X9iAcMYwdME7gItLfG5fwJg==}
     engines: {node: '>=18'}
+    deprecated: Contains unintended breaking changes
     hasBin: true
     peerDependencies:
       rolldown: 1.x
@@ -3983,6 +3994,8 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@kurkle/color@0.3.4': {}
+
   '@kwsites/file-exists@1.1.1':
     dependencies:
       debug: 4.4.0(supports-color@9.4.0)
@@ -4936,6 +4949,10 @@ snapshots:
 
   change-case@5.4.4: {}
 
+  chart.js@4.4.7:
+    dependencies:
+      '@kurkle/color': 0.3.4
+
   chokidar@3.6.0:
     dependencies:
       anymatch: 3.1.3
@@ -5517,7 +5534,7 @@ snapshots:
     dependencies:
       duplexer: 0.1.2
 
-  h3-nightly@1.13.1-20250102-141031-adddaab:
+  h3-nightly@1.13.1-20250105-014434-adddaab:
     dependencies:
       cookie-es: 1.2.2
       crossws: 0.3.1
@@ -5933,7 +5950,7 @@ snapshots:
       fs-extra: 11.2.0
       globby: 14.0.2
       gzip-size: 7.0.0
-      h3: h3-nightly@1.13.1-20250102-141031-adddaab
+      h3: h3-nightly@1.13.1-20250105-014434-adddaab
       hookable: 5.5.3
       httpxy: 0.1.5
       ioredis: 5.4.2
@@ -6040,7 +6057,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuxi-nightly@3.17.3-20250101-223401-0b61a72: {}
+  nuxi-nightly@3.19.0-20250106-171823-dacb6c0: {}
 
   nuxt-nightly@4.0.0-28926533.c1b8b921(@parcel/watcher@2.5.0)(@types/node@22.10.3)(db0@0.1.4)(ioredis@5.4.2)(magicast@0.3.5)(rollup@4.29.1)(terser@5.37.0)(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.3)(jiti@2.4.2)(terser@5.37.0)(yaml@2.7.0))(yaml@2.7.0):
     dependencies:
@@ -6080,7 +6097,7 @@ snapshots:
       mlly: 1.7.3
       nanotar: 0.1.1
       nitro: nitro-nightly@3.0.0-beta-28796231.359af68d(typescript@5.7.2)
-      nuxi: nuxi-nightly@3.17.3-20250101-223401-0b61a72
+      nuxi: nuxi-nightly@3.19.0-20250106-171823-dacb6c0
       nypm: 0.4.1
       ofetch: 1.4.1
       ohash: 1.1.4

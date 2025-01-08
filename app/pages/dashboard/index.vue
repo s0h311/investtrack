@@ -1,22 +1,13 @@
 <template>
-  <KeyFiguresRow
-    v-if="!ordersFetchError"
-    class="mb-10"
-    :orders="orders ?? []"
-  />
+  <div class="space-y-8">
+    <Overview />
 
-  <PriceDevelopmentChart
-    v-if="!priceDevelopmentByAssetIdError && selectedAsset"
-    :price-development-data="displayedPriceDevelopmentData"
-  />
-
-  <div class="flex flex-wrap gap-10">
-    <section class="w-2/3">
+    <section>
       <div class="flex items-center gap-5 mb-2">
         <h2>Favorite Assets</h2>
 
         <NuxtLink
-          class="flex gap-1 duration-300 delay-100 hover:translate-x-2"
+          class="flex gap-1 duration-200 delay-75 hover:translate-x-2"
           to="/dashboard/assets"
         >
           <span>See all</span>
@@ -34,12 +25,12 @@
       />
     </section>
 
-    <section class="w-2/3">
+    <section>
       <div class="flex items-center gap-3 mb-2">
         <h2>Orders</h2>
 
         <button
-          class="flex gap-1 duration-300 delay-100 hover:translate-x-2"
+          class="flex gap-1 duration-200 delay-75 hover:translate-x-2"
           @click="openOrderFormDialog"
         >
           <IconPlus />
@@ -53,8 +44,6 @@
         @order-delete="deleteOrder"
       />
     </section>
-
-    <section></section>
   </div>
 
   <dialog
@@ -79,13 +68,11 @@
 <script setup lang="ts">
   import OrderList from '~/pages/dashboard/components/OrderList.vue'
   import OrderForm from '~/pages/dashboard/components/OrderForm.vue'
-  import type { Asset } from '~~/server/data/types'
   import { definePageMeta } from '#imports'
-  import KeyFiguresRow from '~/pages/dashboard/components/KeyFiguresRow.vue'
   import FavoriteAssetList from '~/pages/dashboard/components/FavoriteAssetList.vue'
   import useFavoriteAssets from '~/composables/useFavoriteAssets'
-  import PriceDevelopmentChart from '~/pages/dashboard/components/PriceDevelopmentChart.vue'
-  import usePriceDevelopment from '~/composables/usePriceDevelopment'
+  import useSelectedAsset, { toggleSelectedAsset } from '~/composables/useSelectedAsset'
+  import Overview from '~/pages/dashboard/components/Overview/Overview.vue'
 
   useHead({
     title: 'Dashboard',
@@ -96,31 +83,11 @@
   })
 
   const orderFormDialogRef = useTemplateRef<HTMLDialogElement>('orderFormDialog')
-  const selectedAsset = ref<Asset | null>(null)
+  const selectedAsset = useSelectedAsset()
 
   const { data: assets, refresh: refreshAssets } = useAssets()
   const { data: orders, error: ordersFetchError, refresh: refreshOrders } = useOrders()
   const { data: favoriteAssets, error: favoriteAssetsFetchError, refresh: refreshFavoriteAssets } = useFavoriteAssets()
-  const { data: priceDevelopmentByAssetId, error: priceDevelopmentByAssetIdError } = usePriceDevelopment()
-
-  const displayedPriceDevelopmentData = computed(() => {
-    const selectedAssetId = selectedAsset.value?.id
-
-    if (selectedAssetId === undefined) {
-      return []
-    }
-
-    return priceDevelopmentByAssetId.value?.[selectedAssetId] ?? []
-  })
-
-  function toggleSelectedAsset(asset: Asset | null): void {
-    if (!asset || selectedAsset.value?.id === asset.id) {
-      selectedAsset.value = null
-      return
-    }
-
-    selectedAsset.value = asset
-  }
 
   function openOrderFormDialog(): void {
     orderFormDialogRef.value?.showModal()

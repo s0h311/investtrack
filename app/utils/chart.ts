@@ -1,15 +1,20 @@
 import { Chart } from 'chart.js/auto'
 
-type LineChartConfig = {
+type ChartConfig = {
   id?: string
-  title: string
   xAxisLabels: string[]
+  data: number[]
+}
+
+type PieChartConfig = {
+  id?: string
+  labels: string[]
   data: number[]
 }
 
 const charts = new Map<string, Chart>()
 
-export function destoryChart(id: string): void {
+export function destroyChart(id: string): void {
   const chart = charts.get(id)
 
   if (chart) {
@@ -17,14 +22,14 @@ export function destoryChart(id: string): void {
   }
 }
 
-export function initLineChart(canvas: HTMLCanvasElement, { id, title, xAxisLabels, data }: LineChartConfig): void {
+export function initLineChart(canvas: HTMLCanvasElement, { id, xAxisLabels, data }: ChartConfig): void {
   const chart = new Chart(canvas, {
     type: 'line',
     data: {
       labels: xAxisLabels,
       datasets: [
         {
-          label: title,
+          label: '',
           data,
           borderColor: '#50C683',
         },
@@ -33,11 +38,16 @@ export function initLineChart(canvas: HTMLCanvasElement, { id, title, xAxisLabel
     options: {
       scales: {
         y: {
-          min: 0,
-          max: Math.ceil(Math.max(...data) * 1.1),
+          min: Math.floor(Math.min(...data) * 0.9),
+          max: Math.floor(Math.max(...data) * 1.1),
           ticks: {
             precision: 0,
           },
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
         },
       },
     },
@@ -48,14 +58,39 @@ export function initLineChart(canvas: HTMLCanvasElement, { id, title, xAxisLabel
   }
 }
 
-export function initBarChart(canvas: HTMLCanvasElement, { title, xAxisLabels, data }: LineChartConfig): void {
+export function initPieChart(canvas: HTMLCanvasElement, { id, labels, data }: PieChartConfig): void {
+  const chart = new Chart(canvas, {
+    type: 'pie',
+    data: {
+      labels,
+      datasets: [
+        {
+          data,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          // display: false,
+        },
+      },
+    },
+  })
+
+  if (id) {
+    charts.set(id, chart)
+  }
+}
+
+export function initBarChart(canvas: HTMLCanvasElement, { xAxisLabels, data }: ChartConfig): void {
   new Chart(canvas, {
     type: 'bar',
     data: {
       labels: xAxisLabels,
       datasets: [
         {
-          label: title,
+          label: '',
           data,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',

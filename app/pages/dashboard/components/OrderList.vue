@@ -18,7 +18,9 @@
         :class="order.type === 'SELL' ? 'bg-red-50' : 'bg-emerald-50'"
         :key="order.id"
       >
-        <td class="max-w-[50ch] line-clamp-1">{{ order.asset.name }}</td>
+        <td>
+          <div class="max-w-[50ch] line-clamp-1">{{ order.asset.name }}</div>
+        </td>
         <td>{{ order.quantity }}</td>
         <td>{{ order.price }}</td>
         <td>{{ order.total }}</td>

@@ -1,12 +1,14 @@
 <template>
-  <div class="max-w-lg">
+  <div class="max-w-lg px-3 py-2.5 border rounded-lg">
+    <h3>Price Development of some</h3>
+
     <canvas ref="priceDevelopmentChartCanvas" />
   </div>
 </template>
 
 <script setup lang="ts">
   import type { PriceDevelopmentByAssetId } from '~~/server/api/priceDevelopment/types'
-  import { destoryChart, initLineChart } from '~/utils/chart'
+  import { destroyChart, initLineChart } from '~/utils/chart'
 
   const props = defineProps<{
     priceDevelopmentData: PriceDevelopmentByAssetId[string]
@@ -17,7 +19,7 @@
   onMounted(() => initChart())
 
   watch(props, () => {
-    destoryChart('priceDevelopmentChartCanvas')
+    destroyChart('priceDevelopmentChartCanvas')
     initChart()
   })
 
@@ -28,7 +30,6 @@
 
     initLineChart(priceDevelopmentChartCanvas.value, {
       id: 'priceDevelopmentChartCanvas',
-      title: 'BLADALDLAS',
       xAxisLabels: props.priceDevelopmentData.map(({ date }) => new Date(date).getDate() + '.'),
       data: props.priceDevelopmentData.map(({ price }) => price),
     })

@@ -10,9 +10,17 @@ select {
     @apply select select-bordered;
 }
 
+table {
+    @apply rounded overflow-hidden
+}
+
 thead tr,
 tbody tr {
     @apply *:p-3 *:text-start *:align-text-top;
+}
+
+tbody {
+    @apply rounded-b-lg
 }
 
 .btn-link {

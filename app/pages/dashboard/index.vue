@@ -47,7 +47,7 @@
   </div>
 
   <dialog
-    class="shadow px-5 py-4 rounded-md"
+    class="shadow px-5 py-4 rounded-lg"
     ref="orderFormDialog"
   >
     <div class="flex items-center justify-between mb-2">

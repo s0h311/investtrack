@@ -1,8 +1,8 @@
 <template>
   <div class="flex items-center gap-5">
-    <div class="bg-sky-900 text-sky-200 w-fit px-2 py-1 rounded-md text-lg">{{ balance }}</div>
+    <div class="bg-sky-900 text-sky-200 w-fit px-2 py-1 rounded-lg text-lg">{{ balance }}</div>
     <div
-      class="w-fit px-2 py-1 rounded-md text-lg"
+      class="w-fit px-2 py-1 rounded-lg text-lg"
       :class="currentMonthsTotalInvestment > 0 ? 'bg-emerald-900 text-emerald-200' : 'bg-red-900 text-red-200'"
     >
       {{ currentMonthsTotalInvestmentText }}

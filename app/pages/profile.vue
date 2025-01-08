@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow w-fit p-3 rounded-md mx-auto">
+  <div class="shadow w-fit p-3 rounded-lg mx-auto">
     Hi
     <span class="text-sky-700 font-semibold"> {{ user?.user_metadata.name }}</span
     >, your E-Mail address is <span class="text-sky-700 font-semibold"> {{ user?.email }}</span> and your are a member

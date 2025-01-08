@@ -1,5 +1,5 @@
 <template>
-  <nav class="shadow rounded-md px-5 py-2 flex justify-between">
+  <nav class="shadow rounded-lg px-5 py-2 flex justify-between">
     <NuxtLink to="/">Invest Track</NuxtLink>
 
     <div
